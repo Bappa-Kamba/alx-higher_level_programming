@@ -90,7 +90,7 @@ class Rectangle:
         """
         Calculates perimeter of rectangle
 
-        Returns: 
+        Returns:
             - perimeter
             - else 0 if width or height is 0
 
@@ -116,5 +116,5 @@ class Rectangle:
                 for j in range(w):
                     str += "#"
                 str += "\n"
-        
+
         return str

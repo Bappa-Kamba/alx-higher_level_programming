@@ -35,7 +35,6 @@ class Rectangle:
         Getter
 
         Returns width
-        
         """
         return self.__width
 

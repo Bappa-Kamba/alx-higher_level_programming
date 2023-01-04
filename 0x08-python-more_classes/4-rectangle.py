@@ -31,7 +31,7 @@ class Rectangle:
 
     @property
     def width(self):
-        """ 
+        """
         Getter
 
         Returns width
@@ -90,7 +90,7 @@ class Rectangle:
         """
         Calculates perimeter of rectangle
 
-        Returns: 
+        Returns:
             - perimeter
             - else 0 if width or height is 0
 

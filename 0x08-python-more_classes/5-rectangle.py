@@ -31,7 +31,7 @@ class Rectangle:
 
     @property
     def width(self):
-        """ 
+        """
         Getter
 
         Returns width
@@ -41,7 +41,7 @@ class Rectangle:
 
     @width.setter
     def width(self, value):
-        """ 
+        """
         Setter
 
         Args:
@@ -55,7 +55,7 @@ class Rectangle:
 
     @property
     def height(self):
-        """ 
+        """
         Getter
 
         Returns height
@@ -65,7 +65,7 @@ class Rectangle:
 
     @height.setter
     def height(self, value):
-        """ 
+        """
         Setter
 
         Args:
@@ -90,7 +90,7 @@ class Rectangle:
         """
         Calculates perimeter of rectangle
 
-        Returns: 
+        Returns:
             - perimeter
             - else 0 if width or height is 0
 
@@ -120,7 +120,7 @@ class Rectangle:
         return str
 
     def __repr__(self):
-        """ 
+        """
         String Representation of the rectangle object
 
         Returns a string to create a new rectangle using eval
