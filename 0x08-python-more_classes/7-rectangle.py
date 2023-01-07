@@ -102,7 +102,8 @@ class Rectangle:
         """
         if self.width == 0 or self.height == 0:
             perimeter = 0
-        perimeter = 2 * (self.width + self.height)
+        else:
+            perimeter = 2 * (self.width + self.height)
 
         return perimeter
 
@@ -114,14 +115,7 @@ class Rectangle:
         if self.width == 0 or self.height == 0:
             return ""
         else:
-            str = ""
-            w = self.width
-            h = self.height
-            for i in range(h):
-                for j in range(w):
-                    str += Rectangle.print_symbol
-                str += "\n"
-
+            str = "\n".join(["#" * self.__width for rows in range(self.__height)])
         return str
 
     def __repr__(self):
@@ -135,25 +129,3 @@ class Rectangle:
     def __del__(self):
         print("Bye rectangle...")
         Rectangle.number_of_instances -= 1
-
-
-rect_1 = Rectangle(8, 4)
-print(rect_1)
-print("---")
-rect_1.print_symbol = "&"
-print(rect_1)
-print("---")
-
-rect_2 = Rectangle(2, 1)
-print(rect_2)
-print("---")
-Rectangle.print_symbol = "C"
-print(rect_2)
-print("---")
-
-rect_3 = Rectangle(7, 3)
-print(rect_3)
-print("---")
-rect_3.print_symbol = ["C", "is", "fun!"]
-print(rect_3)
-print("---")

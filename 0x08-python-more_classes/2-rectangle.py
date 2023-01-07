@@ -97,6 +97,7 @@ class Rectangle:
         """
         if self.width == 0 or self.height == 0:
             perimeter = 0
-        perimeter = 2 * (self.width + self.height)
+        else:
+            perimeter = 2 * (self.width + self.height)
 
         return perimeter

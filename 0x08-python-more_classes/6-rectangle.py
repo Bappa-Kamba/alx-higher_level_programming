@@ -101,7 +101,8 @@ class Rectangle:
         """
         if self.width == 0 or self.height == 0:
             perimeter = 0
-        perimeter = 2 * (self.width + self.height)
+        else:
+            perimeter = 2 * (self.width + self.height)
 
         return perimeter
 
@@ -113,14 +114,7 @@ class Rectangle:
         if self.width == 0 or self.height == 0:
             return ""
         else:
-            str = ""
-            w = self.width
-            h = self.height
-            for i in range(h):
-                for j in range(w):
-                    str += "#"
-                str += "\n"
-
+            str = "\n".join(["#" * self.__width for rows in range(self.__height)])
         return str
 
     def __repr__(self):
