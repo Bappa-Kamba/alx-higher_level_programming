@@ -109,8 +109,8 @@ class Rectangle:
         """
         if self.width == 0 or self.height == 0:
             return ""
-        else:
-            str = "\n".join(["#" * self.__width for rows in range(self.__height)])
+        str = "\n".join(["#" * self.__width for rows in range(self.__height)])
+
         return str
 
     def __repr__(self):
