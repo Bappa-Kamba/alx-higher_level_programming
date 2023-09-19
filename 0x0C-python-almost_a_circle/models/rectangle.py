@@ -6,7 +6,7 @@ Inherits from Base;
 Inits superclass' id
 Contains private width, height, x, y
 """
-from base import Base
+from models.base import Base
 
 
 class Rectangle(Base):
@@ -199,9 +199,3 @@ class Rectangle(Base):
         dict["y"] = self.y
 
         return dict
-if __name__ == "__main__":
-    r1 = Rectangle(10, 7, 2, 8)
-    r2 = Rectangle(2, 4)
-    Rectangle.save_to_file(None)
-    with open("Rectangle.json", "r") as file:
-        print(file.read())
