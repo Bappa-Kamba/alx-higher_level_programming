@@ -17,7 +17,7 @@ class Square(Rectangle):
     `__init__(self, width, height, x=0, y=0, id=None)`
     `area(self)`
     getters:
-        
+
     setters:
 
     Attributes:
@@ -26,8 +26,8 @@ class Square(Rectangle):
 
     def __init__(self, size, x=0, y=0, id=None):
         """
-        Calls the super class with `id`, `x`, `y`, `width` and `height` 
-        this super call will use the logic of the `__init__` of the 
+        Calls the super class with `id`, `x`, `y`, `width` and `height`
+        this super call will use the logic of the `__init__` of the
         Rectangle class.
         The `width` and `height` must be assigned to the value of `size`
 
