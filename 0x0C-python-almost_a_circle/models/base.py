@@ -74,7 +74,7 @@ class Base():
         else:
             filename = cls.__name__ + ".json"
             with open(filename, mode="w", encoding="utf-8")as file:
-                file.write("")
+                file.write("[]")
 
     def from_json_string(json_string):
         """
