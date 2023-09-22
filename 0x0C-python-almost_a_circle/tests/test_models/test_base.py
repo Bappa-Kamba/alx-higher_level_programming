@@ -10,8 +10,7 @@ import pep8
 import json
 import os
 from models.base import Base
-from models import rectangle
-Rectangle = rectangle.Rectangle
+from models.rectangle import Rectangle
 
 
 class TestPep8(unittest.TestCase):
@@ -34,8 +33,8 @@ class TestBase(unittest.TestCase):
     def tearDown(self):
         try:
             os.remove("Rectangle.json")
-        except:
-            pass
+        except FileNotFoundError:
+            print("File deleted already.")
 
     """Test attributes"""
     def test_id_given(self):

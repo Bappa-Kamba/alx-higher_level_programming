@@ -137,3 +137,60 @@ class Base():
             return list
 
         return list
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """
+        writes the JSON string representation of `list_objs` to a csv_file:
+            * `list_objs` is a list of instances who inherits `Base`
+                - example: list of `Rectangle` or list of `Square` instances
+            * If `list_objs` is `None`, save an empty list
+            * The filename must be: `<Class name>.csv` - example:
+            `Rectangle.csv`
+            * You must use the static method `to_json_string` (created before)
+            * You must overwrite the file if it already exists
+
+        Note: before converting `list_objs` to string, first use the
+        `to_dictionary`
+            method of the instances to create a dictionary first
+        """
+        if list_objs is not None:
+            filename = cls.__name__ + ".csv"
+            with open(filename, mode="w", encoding="utf-8")as file:
+                for o in list_objs:
+                    target = cls.to_csv(o)
+                    file.write(target+"\n")
+        else:
+            filename = cls.__name__ + ".csv"
+            with open(filename, mode="w", encoding="utf-8")as file:
+                file.write("")
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """
+        returns a list of instances:
+            * The filename must be: `<Class name>.json` - example:
+            `Rectangle.json`
+            * If the file doesn't exist, return an empty list
+            * Otherwise, return a list of instances - the type of these
+            instances
+                depends on `cls` (current class using this method)
+            * You must use the `from_json_string` and `create` methods
+            (implemented previously)
+        """
+        filename = cls.__name__ + ".csv"
+
+        new_list = []
+        try:
+            with open(filename, 'r') as file:
+                instance_list = file.readlines()
+                for instance in instance_list:
+                    loaded_obj = cls.from_csv(instance[:-1].split(","))
+                    obj = cls.create(**loaded_obj)
+                    new_list.append(obj)
+
+        except FileNotFoundError:
+            new_list = []
+            return new_list
+
+        return new_list

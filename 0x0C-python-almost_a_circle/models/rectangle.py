@@ -199,3 +199,28 @@ class Rectangle(Base):
         dict["y"] = self.y
 
         return dict
+
+    def to_csv(self):
+        """
+        returns the csv representation of a `Rectangle`.
+        This string must contain:
+            `id`, `width`, `height`, `x` and `y`.
+        """
+
+        return f"{self.id},{self.width},{self.height},{self.x},{self.y}"
+
+    def from_csv(obj_str):
+        """
+        returns the dictionary representation of a `Rectangle` from a csv.
+        This string must contain:
+            `id`, `width`, `height`, `x` and `y`.
+
+        """
+        dict = {}
+        dict["id"] = int(obj_str[0])
+        dict["width"] = int(obj_str[1])
+        dict["height"] = int(obj_str[2])
+        dict["x"] = int(obj_str[3])
+        dict["y"] = int(obj_str[4])
+
+        return dict

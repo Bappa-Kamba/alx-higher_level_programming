@@ -101,3 +101,36 @@ class Square(Rectangle):
         dict["y"] = self.y
 
         return dict
+
+    def to_csv(self):
+        """
+        returns the csv representation of a `Rectangle`.
+        This string must contain:
+            `id`, `width`, `height`, `x` and `y`.
+        """
+
+        return f"{self.id},{self.size},{self.x},{self.y}"
+
+    def to_csv(self):
+        """
+        returns the csv representation of a `Square`.
+        This string must contain:
+            `id`, `size`, `x` and `y`.
+        """
+
+        return f"{self.id},{self.size},{self.x},{self.y}"
+
+    def from_csv(obj_str):
+        """
+        returns the dictionary representation of a `Square` from a csv.
+        This string must contain:
+            `id`, `size`, `x` and `y`.
+
+        """
+        dict = {}
+        dict["id"] = int(obj_str[0])
+        dict["size"] = int(obj_str[1])
+        dict["x"] = int(obj_str[2])
+        dict["y"] = int(obj_str[3])
+
+        return dict
