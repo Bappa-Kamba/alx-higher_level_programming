@@ -10,21 +10,21 @@ def find_peak(list_of_integers):
     """
     if len(list_of_integers) == 0:
         return None
-
+    list_copy = list_of_integers
     beg = 0
-    end = len(list_of_integers)-1
+    end = len(list_copy)-1
 
-    if list_of_integers[beg] > list_of_integers[beg+1]:
-        return list_of_integers[beg]
-    if list_of_integers[end] > list_of_integers[end-1]:
-        return list_of_integers[end]
+    if list_copy[beg] > list_copy[beg+1]:
+        return list_copy[beg]
+    if list_copy[end] > list_copy[end-1]:
+        return list_copy[end]
 
     mid = (beg+end)//2
-    if list_of_integers[mid-1] < list_of_integers[mid] and list_of_integers[mid+1] < list_of_integers[mid]:
-        return list_of_integers[mid]
-    if list_of_integers[mid] < list_of_integers[mid-1]:
-        return find_peak(list_of_integers[beg:mid+1])
-    elif list_of_integers[mid] < list_of_integers[mid+1]:
-        return find_peak(list_of_integers[mid:end+1])
+    if list_copy[mid-1] < list_copy[mid] and list_copy[mid+1] < list_copy[mid]:
+        return list_copy[mid]
+    if list_copy[mid] < list_copy[mid-1]:
+        return find_peak(list_copy[beg:mid+1])
+    elif list_copy[mid] < list_copy[mid+1]:
+        return find_peak(list_copy[mid:end+1])
     else:
-        return list_of_integers[beg]
+        return list_copy[beg]
