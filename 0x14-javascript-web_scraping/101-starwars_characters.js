@@ -1,40 +1,52 @@
-#!/usr/bin/node
-
 const request = require('request');
 
-if (process.argv.length !== 3) {
-  console.error('Usage: ./script.js <Movie ID>');
+const movieId = process.argv[2];
+
+if (!movieId) {
+  console.error('Please provide a movie ID as the first argument');
   process.exit(1);
 }
 
-const movieId = process.argv[2];
-const apiUrl = `https://swapi-api.alx-tools.com/api/films/${movieId}`;
+const movieUrl = `https://swapi-api.alx-tools.com/api/films/${movieId}/`;
 
-request(apiUrl, (error, response, body) => {
+request(movieUrl, (error, response, body) => {
   if (error) {
-    console.error('Error:', error);
+    console.error(`Error fetching movie data: ${error}`);
     process.exit(1);
   }
 
   if (response.statusCode !== 200) {
-    console.error(`Failed to fetch data. Status code: ${response.statusCode}`);
+    console.error(`Failed to fetch movie data. Status code: ${response.statusCode}`);
     process.exit(1);
   }
 
   try {
     const movieData = JSON.parse(body);
-    movieData.characters.forEach((characterUrl) => {
-      request(characterUrl, (charError, charResponse, charBody) => {
-        if (!charError && charResponse.statusCode === 200) {
-          const characterData = JSON.parse(charBody);
-          console.log(characterData.name);
-        } else {
-          console.error(`Failed to fetch character data. Status code: ${charResponse ? charResponse.statusCode : 'unknown'}`);
-        }
+    const characterPromises = movieData.characters.map(characterUrl => {
+      return new Promise((resolve, reject) => {
+        request(characterUrl, (error, response, body) => {
+          if (error) {
+            reject(`Error fetching character data: ${error}`);
+          } else if (response.statusCode !== 200) {
+            reject(`Failed to fetch character data. Status code: ${response.statusCode}`);
+          } else {
+            const character = JSON.parse(body);
+            resolve(character.name);
+          }
+        });
       });
     });
+
+    Promise.all(characterPromises)
+      .then(characterNames => {
+        characterNames.forEach(name => console.log(name));
+      })
+      .catch(error => {
+        console.error(error);
+        process.exit(1);
+      });
   } catch (parseError) {
-    console.error('Error parsing JSON:', parseError);
+    console.error(`Error parsing movie data: ${parseError}`);
     process.exit(1);
   }
 });
